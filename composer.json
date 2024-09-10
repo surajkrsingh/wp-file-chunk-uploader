@@ -1,0 +1,32 @@
+{
+    "name": "surajsingh/wp-file-chunk-uploader",
+    "description": "A plugin that enables seamless uploading of large files by splitting them into manageable chunks.",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Suraj Kumar Singh",
+            "email": "suraj.sk243@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "WP_FCU\\": "Inc/"
+        }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.0",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "phpcompatibility/php-compatibility": "dev-develop as 9.99.99",
+        "wp-coding-standards/wpcs": "dev-develop"
+    },
+    "scripts": {
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

@@ -1,0 +1,47 @@
+// This is dashboard styles.
+.wp-fcu-quick-settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .wp-fcu-quick-settings-item {
+        min-width: 360px;
+        max-width: 360px;
+        background: wheat;
+        display: flex;
+        align-items: center;
+    }
+
+    .wp-fcu-quick-settings-icon {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        color: white;
+    }
+
+    .wp-fcu-quick-settings-description {
+        padding: 0 20px;
+        width: 80%;
+    }
+
+    .wp-fcu-quick-settings-action {
+        width: 20%;
+    }
+
+}
+
+.wp-fcu-admin-page  {
+    .wp-fcu-content-main {
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 0px 1px 1px #eaeaea;
+        width: 70%;
+    }
+
+    .wp-fcu-content-aside {
+        width: 30%;
+    }
+}

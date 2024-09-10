@@ -1,0 +1,127 @@
+/**
+* This file contains the common styles.
+*/
+
+.wp-fcu-admin-page {
+    background: #f8fafc;
+
+    #wpcontent {
+        padding: 0;
+    }
+
+    #wpbody {
+        padding: 30px;
+    }
+
+    .wrap {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wp-fcu-welcome-section {
+        display: flex;
+        gap: 40px;
+        justify-content: space-between;
+        padding: 30px;
+        box-shadow: 0 0px 1px 1px #eaeaea;
+        background-color: #fff;
+        margin-bottom: 30px;
+
+        .wp-fcu-welcome-section-greeting {
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+    }
+
+    .wp-fcu-welcome-section-description {
+        font-size: 16px;
+        margin-bottom: 30px;
+        text-align: justify;
+    }
+
+    .wp-fcu-content {
+        display: flex;
+        width: 100%;
+        gap: 30px;
+        justify-content: space-between;
+    }
+
+    .wp-fcu-box {
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 0px 1px 1px #eaeaea;
+
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+
+}
+
+#wp-fcu-admin-header {
+    align-items: center;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    overflow: hidden;
+    padding: 0px 30px;
+    align-items: center;
+
+    .wp-fcu-logo {
+        img {
+            aspect-ratio: 1 / 1;
+            max-width: 48px;
+            max-height: 48px;
+        }
+    }
+
+    .wp-fcu-admin-menu {
+        align-items: center;
+        display: flex;
+        gap: 20px;
+        height: 100%;
+
+        li {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wp-fcu-admin-menu-item {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            color: #7a7b7d;
+            padding: 0px 16px;
+
+            &.active:after,
+            &:hover::after {
+                content: "";
+                width: 100%;
+                border-bottom: 3px solid red;
+                border-color: #7a7b7d;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+
+            &.active,
+            &.active:after {
+                border-color: #3858e9;
+                color: #3858e9;
+            }
+
+        }
+    }
+
+    .wp-fcu-admin-header-right {
+        font-weight: 600;
+    }
+}

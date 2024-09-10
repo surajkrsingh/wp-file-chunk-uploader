@@ -1,0 +1,34 @@
+{
+	"name": "wp-file-chunk-uploader",
+	"version": "0.0.1",
+	"description": "A plugin that enables seamless uploading of large files by splitting them into manageable chunks.",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/surajkrsingh/wp-flashcard-builder"
+	},
+	"author": "Suraj Kumar Singh",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/surajkrsingh/wp-file-chunk-uploader"
+	},
+	"homepage": "https://github.com/surajkrsingh/wp-file-chunk-uploader",
+	"scripts": {
+		"start": "10up-toolkit build --watch",
+		"build": "10up-toolkit build",
+		"format-js": "10up-toolkit format-js",
+		"lint-js": "10up-toolkit lint-js",
+		"lint-style": "10up-toolkit lint-style",
+		"test": "10up-toolkit test-unit-jest"
+	},
+	"10up-toolkit": {
+		"entry": {
+			"admin": "./assets/admin/main.js",
+			"public": "./assets/public/main.js"
+		}
+	},
+	"devDependencies": {
+		"@wordpress/browserslist-config": "^6.7.0",
+		"10up-toolkit": "^5.2.2"
+	}
+}
