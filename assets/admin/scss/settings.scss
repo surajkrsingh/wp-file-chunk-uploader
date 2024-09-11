@@ -1,1 +1,107 @@
 // This is settings styles.
+
+.wp-fcu-settings-page-container {
+    .wp-fcu-setting-main {
+        display: flex;
+        box-shadow: 0 0px 1px 1px #eaeaea;
+        background-color: #fff;
+        margin-bottom: 30px;
+    }
+
+    .wp-fcu-sidebar {
+        width: 300px;
+        min-height: 400px;
+        border-right: solid 2px #ebebeb;
+    }
+
+    .wp-fcu-sidebar-nav {
+        margin: 30px 0;
+
+        a {
+            color: #000;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            position: relative;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+
+            i {
+                margin-right: 16px;
+                font-size: 24px;
+            }
+        }
+
+        a:focus,
+        a.active {
+            color: blue;
+            box-shadow: none;
+        }
+
+        a:hover:after {
+            background-color: gray;
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        a.active:after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: blue;
+        }
+    }
+
+    .wp-fcu-settings {
+        width: calc(100% - 300px);
+        min-height: 400px;
+        position: relative;
+        // max-height: calc(100vh - 64px);
+        // overflow: scroll;
+
+        .wp-fcu-setting {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            border-bottom: solid 2px #ebebeb;
+        }
+
+        .wp-fcu-settings-header,
+        .wp-fcu-settings-footer {
+            padding: 15px 30px;
+            display: flex;
+            justify-content: end;
+            border-bottom: solid 2px #ebebeb;
+            position: sticky;
+            background-color: #fff;
+        }
+
+        .wp-fcu-settings-header {
+            top: 32px;
+            left: 0;
+            right: 0;
+        }
+
+        .wp-fcu-settings-footer {
+            border: none;
+            border-top: solid 2px #ebebeb;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 30px;
+        }
+        
+    }
+}
