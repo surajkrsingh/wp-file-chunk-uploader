@@ -43,8 +43,8 @@ class Main {
 	protected function setup_hooks() {
 		register_activation_hook( WP_FCU_PLUGIN_FILE, array( $this, 'plugin_activation' ) );
 		register_deactivation_hook( WP_FCU_PLUGIN_FILE, array( $this, 'plugin_deactivation' ) );
-
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_text_domain' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 	}
 
 	/**
@@ -74,5 +74,25 @@ class Main {
 	 */
 	public function load_plugin_text_domain() {
 		load_plugin_textdomain( 'wp-file-chunk-uploader', false, WP_FCU_PLUGIN_DIR_NAME . '/languages' );
+	}
+
+	/**
+	 * Add admin menu page content.
+	 *
+	 * @return void
+	 */
+	public function load_scripts() {
+		// $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		wp_register_script( 'wp_fcu_main_scripts', WP_FCU_PLUGIN_URL . '/dist/js/public.js', array( 'jquery' ), WP_FCU_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'wp_fcu_main_scripts' );
+
+		wp_localize_script(
+			'wp_fcu_main_scripts',
+			'FCU_Objects',
+			array(
+				'ajaxURL' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'wp_fcu_nonce' ),
+			)
+		);
 	}
 }

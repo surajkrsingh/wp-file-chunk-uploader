@@ -12,6 +12,10 @@
         margin-bottom: 30px;
     }
 
+    #wpbody-content > div:not(main,.wrap) {
+        display: none;
+    }
+
     #wpcontent {
         padding: 0;
     }

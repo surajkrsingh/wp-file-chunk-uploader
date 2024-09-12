@@ -185,3 +185,5 @@ class ChunkUploader {
         this.uploadedFilesList.append(listItem);
     }
 }
+
+export default ChunkUploader;

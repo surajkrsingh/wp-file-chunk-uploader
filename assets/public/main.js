@@ -1,45 +1,23 @@
 /**
- * This file contains the scripts for cardview frontend.
+ * Main class.
  *
- * @author Suraj Singh
- *
- * @package bit_background_process
+ * @package WP_FCU
  */
 
-//import './../scss/common.scss';
+import ChunkUploader from './js/ChunkUploader';
+jQuery(document).ready(function () {
+    try {
+        const uploader = new ChunkUploader({
+            ajaxUrl: FCU_Objects?.ajaxURL || '',
+            chunkSize: 1024 * 1024 * 10 // 10MB
+        });
 
-(function ($) {
-	/**
-	 * Represents a Cardview object.
-	 * This class represents a Cardview and provides methods and properties to interact with it.
-	 *
-	 * @class
-	 */
-	class Cardview {
-		/**
-		 * Create a new Cardview.
-		 *
-		 * @constructor
-		 * @param {Object} options - The options for the Cardview.
-		 * @param {string} options.cardviewId - The ID of the Cardview.
-		 */
-		constructor(options) {
-			this.options = options;
-		}
-
-		/**
-		 * This function registers the events.
-		 */
-		init() {
-
-		}
-	}
-
-	$(document).ready(function () {
-		if (cardviewBuilder && cardviewBuilder.options) {
-			cardviewBuilder.options.forEach(option => {
-				new Cardview(option).init();
-			});
-		}
-	});
-}(jQuery));
+        if (uploader) {
+            uploader.init();
+        } else {
+            console.error('ChunkUploader initialization failed.');
+        }
+    } catch (error) {
+        console.error('Error initializing ChunkUploader:', error);
+    }
+});

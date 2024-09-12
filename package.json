@@ -23,7 +23,7 @@
 	},
 	"10up-toolkit": {
 		"entry": {
-			"admin": "./assets/admin/main.js",
+			"admin": "./assets/admin/admin.js",
 			"public": "./assets/public/main.js"
 		}
 	},

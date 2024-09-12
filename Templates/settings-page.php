@@ -39,7 +39,7 @@ $section_nav     = $this->get_settings();
 			<div class="wp-fcu-settings-header">
 				<button button="submit" class="button button-primary wp-fcu-button"> <?php echo esc_html__( 'Save Changes', 'wp-fcu' ); ?> </button>
 			</div>
-			<?php do_action( 'wp_fcu_admin_settings_' . $current_section, $current_section ); ?>
+			<?php do_action( 'wp_fcu_admin_settings', $current_section ); ?>
 			<div class="wp-fcu-settings-footer">
 				<button button="submit" class="button button-primary wp-fcu-button"> <?php echo esc_html__( 'Save Changes', 'wp-fcu' ); ?> </button>
 			</div>

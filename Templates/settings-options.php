@@ -27,6 +27,9 @@ if ( empty( $setting_options ) ) {
 		<div class="wp-fcu-setting-label">
 			<h2 for="wp-fcu-setting-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $option['label'] ); ?></h2>
 			<p class="wp-fcu-setting-description"><?php echo esc_html( $option['description'] ); ?></p>
+			<?php if ( ! empty( $option['note'] ) ) : ?>
+				<p class="wp-fcu-setting-note"><?php echo esc_html( $option['note'] ); ?></p>
+			<?php endif; ?>
 		</div>
 		<div class="wp-fcu-setting-input">
 			<?php $this->render_setting( $option ); ?>

@@ -36,6 +36,7 @@ class Chunk_Uploader {
 	 * @return void
 	 */
 	protected function setup_hooks() {
+		add_shortcode( 'wpfcu_chunk_uploader', array( $this, 'add_chunk_uploader' ) );
 		add_action( 'wp_ajax_chunk_upload', array( $this, 'chunk_upload' ) );
 	}
 
@@ -44,7 +45,7 @@ class Chunk_Uploader {
 	 *
 	 * @return void
 	 */
-	public function add_page_content() {
+	public function add_chunk_uploader() {
 		require_once WP_FCU_PLUGIN_PATH . '/templates/uploader-page.php';
 	}
 
