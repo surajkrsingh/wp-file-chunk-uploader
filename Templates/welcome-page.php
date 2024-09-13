@@ -25,6 +25,7 @@ $display_name = $current_user->display_name;
 			</div>
 		</div>
 		<div class="wp-fcu-welcome-section-media">
+			Add pie chart for media and their size calculations.
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/1yWd_mZ7eF4?si=T_5SoF5h2nGm5QNR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 		</div>
 	</div>

@@ -76,13 +76,32 @@ class Settings {
 		$upload_max_filesize = wp_fcu_size_format( wp_max_upload_size() );
 
 		$section_nav = array(
-			'general'       => array(
+			'general'         => array(
 				'label'    => esc_html__( 'General', 'wp-fcu' ),
 				'slug'     => 'general',
 				'icon'     => 'dashicons dashicons-admin-generic',
 				'url'      => admin_url( 'admin.php?page=wp-file-chunk-uploader&subpage=' . $current_sub_page . '&section=general' ),
 				'settings' => array(
-					'chunk_size'    => array(
+					'file_upload_method' => array(
+						'label'       => esc_html__( 'File Upload Method', 'wp-fcu' ),
+						'description' => esc_html__( 'File Upload Method refers to the method used to upload files.', 'wp-fcu' ),
+						'default'     => 'auto',
+						'type'        => 'select',
+						'choices'     => array(
+							'auto'   => esc_html__( 'Normal', 'wp-fcu' ),
+							'native' => esc_html__( 'Chunked Upload', 'wp-fcu' ),
+						),
+					),
+					'allow_file_types'   => array(
+						'label'       => esc_html__( 'Allowed File Types', 'wp-fcu' ),
+						'description' => esc_html__( 'Allowed File Types refers to the file types that are allowed to be uploaded.', 'wp-fcu' ),
+						'default'     => 'zip,jpg,jpeg,png,doc,docx,pdf',
+						'type'        => 'text',
+						'name'        => 'allow_file_types',
+						'placeholder' => 'zip,jpg,jpeg,png,doc,docx,pdf',
+						'note'        => esc_html__( 'Enter the file types separated by commas.', 'wp-fcu' ),
+					),
+					'chunk_size'         => array(
 						'label'       => esc_html__( 'Upload Chunk Size', 'wp-fcu' ),
 						'description' => esc_html__( 'Upload Chunk Size refers to the size (in MB) of the data segments used to divide large files for efficient uploading.', 'wp-fcu' ),
 						'note'        => sprintf( esc_html__( 'Note: The default chunk size is 10MB. You can adjust the chunk size in the settings, but it should not be more than %s', 'wp-fcu' ), $upload_max_filesize ),
@@ -90,27 +109,40 @@ class Settings {
 						'type'        => 'number',
 						'max'         => intval( preg_replace( '/[^0-9]/', '', $upload_max_filesize ) ),
 						'min'         => 1,
+						'placeholder' => '10',
 						'name'        => 'chunk_size',
 					),
-					'max_file_size' => array(
+					'max_file_size'      => array(
 						'label'       => esc_html__( 'Max File Size', 'wp-fcu' ),
 						'description' => esc_html__( 'Max File Size is the maximum size in MB of the uploaded file.', 'wp-fcu' ),
 						'default'     => '10MB',
 						'type'        => 'text',
 						'max'         => intval( preg_replace( '/[^0-9]/', '', $upload_max_filesize ) ),
 						'min'         => 0,
+						'placeholder' => intval( preg_replace( '/[^0-9]/', '', $upload_max_filesize ) ),
 						'name'        => 'max_file_size',
 					),
-					'upload_dir'    => array(
+					'max_upload_size'    => array(
+						'label'       => esc_html__( 'Max Upload Size', 'wp-fcu' ),
+						'description' => esc_html__( 'Max Upload Size is the maximum size in MB of the uploaded file.', 'wp-fcu' ),
+						'default'     => 0,
+						'type'        => 'number',
+						'max'         => intval( preg_replace( '/[^0-9]/', '', $upload_max_filesize ) ),
+						'min'         => 0,
+						'placeholder' => intval( preg_replace( '/[^0-9]/', '', $upload_max_filesize ) ),
+						'name'        => 'max_upload_size',
+					),
+					'upload_dir'         => array(
 						'label'       => esc_html__( 'Upload Directory', 'wp-fcu' ),
 						'description' => esc_html__( 'Upload Directory refers to the directory where the uploaded files will be stored.', 'wp-fcu' ),
 						'note'        => esc_html__( 'Note: The default path is wp-content/uploads/', 'wp-fcu' ),
 						'type'        => 'text',
+						'placeholder' => 'wp-content/uploads/',
 						'name'        => 'upload_dir',
 					),
 				),
 			),
-			'media_library' => array(
+			'media_library'   => array(
 				'label'    => esc_html__( 'Media Library', 'wp-fcu' ),
 				'slug'     => 'media_library',
 				'icon'     => 'dashicons dashicons-admin-media',
@@ -125,14 +157,128 @@ class Settings {
 					),
 				),
 			),
-			'advanced'      => array(
+			'advanced'        => array(
 				'label'    => esc_html__( 'Advanced', 'wp-fcu' ),
 				'slug'     => 'advanced',
 				'icon'     => 'dashicons dashicons-admin-tools',
 				'url'      => admin_url( 'admin.php?page=wp-file-chunk-uploader&subpage=' . $current_sub_page . '&section=advanced' ),
-				'settings' => array(),
+				'settings' => array(
+					'is_create_attachments'  => array(
+						'label'       => esc_html__( 'Create Media Attachments', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want the uploaded files to be added as attachments in the media library.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'is_create_attachments',
+						'default'     => true,
+						'note'        => esc_html__( 'Note: When uploading images via external pages or shortcodes, files will automatically be created as WordPress media attachments.', 'wp-fcu' ),
+					),
+					'enable_logging'         => array(
+						'label'       => esc_html__( 'Enable Logging', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to enable logging.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'enable_logging',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Logging is disabled by default.', 'wp-fcu' ),
+					),
+					'user_role_based_access' => array(
+						'label'       => esc_html__( 'User Role Based Access', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to enable user role based access.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'user_role_based_access',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: User role based access is disabled by default.', 'wp-fcu' ),
+						'help'        => esc_html__( 'Note: User role based access is disabled by default.', 'wp-fcu' ),
+					),
+					'google_captcha'         => array(
+						'label'       => esc_html__( 'Google ReCaptcha', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to enable Google ReCaptcha.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'google_captcha',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Google ReCaptcha is disabled by default.', 'wp-fcu' ),
+					),
+					'max_upload_per_user'    => array(
+						'label'       => esc_html__( 'Max Upload Per User', 'wp-fcu' ),
+						'description' => esc_html__( 'Max Upload Per User refers to the maximum number of files that can be uploaded per user.', 'wp-fcu' ),
+						'type'        => 'number',
+						'name'        => 'max_upload_per_user',
+						'default'     => 1,
+						'note'        => esc_html__( 'Note: Max Upload Per User is set to 1 by default.', 'wp-fcu' ),
+					),
+					'file_scanning'          => array(
+						'label'       => esc_html__( 'File Scanning', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to enable file scanning.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'file_scanning',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: File scanning is disabled by default.', 'wp-fcu' ),
+					),
+					'disable_progress_bar'   => array(
+						'label'       => esc_html__( 'Disable Progress Bar', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to disable the progress bar.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'disable_progress_bar',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Progress bar is enabled by default.', 'wp-fcu' ),
+					),
+				),
 			),
-			'codes'  => array(
+			'user_experience' => array(
+				'label'    => esc_html__( 'User Experience', 'wp-fcu' ),
+				'slug'     => 'user_experience',
+				'icon'     => 'dashicons dashicons-admin-appearance',
+				'url'      => admin_url( 'admin.php?page=wp-file-chunk-uploader&subpage=' . $current_sub_page . '&section=user_experience' ),
+				'settings' => array(
+					'display_upload_status' => array(
+						'label'       => esc_html__( 'Display Upload Status', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to display the upload status.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'display_upload_status',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Upload status is enabled by default.', 'wp-fcu' ),
+					),
+					'enable_drag_drop'      => array(
+						'label'       => esc_html__( 'Enable Drag & Drop', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to enable drag & drop.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'enable_drag_drop',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Drag & Drop is enabled by default.', 'wp-fcu' ),
+					),
+					'auto_upload_start'     => array(
+						'label'       => esc_html__( 'Auto Upload Start', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to enable auto upload start.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'auto_upload_start',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Auto upload start is enabled by default.', 'wp-fcu' ),
+					),
+					'allow_pause_resume'    => array(
+						'label'       => esc_html__( 'Allow Pause / Resume', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to allow pause / resume.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'allow_pause_resume',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Pause / Resume is enabled by default.', 'wp-fcu' ),
+					),
+					'allow_cancel_upload'   => array(
+						'label'       => esc_html__( 'Allow Cancel Upload', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to allow cancel upload.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'allow_cancel_upload',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Cancel upload is enabled by default.', 'wp-fcu' ),
+					),
+					'backup_on_failure'     => array(
+						'label'       => esc_html__( 'Backup on Failure', 'wp-fcu' ),
+						'description' => esc_html__( 'Enable this option if you want to enable backup on failure.', 'wp-fcu' ),
+						'type'        => 'checkbox',
+						'name'        => 'backup_on_failure',
+						'default'     => false,
+						'note'        => esc_html__( 'Note: Backup on failure is enabled by default.', 'wp-fcu' ),
+					),
+				),
+			),
+			'codes'           => array(
 				'label'    => esc_html__( 'Custom Codes', 'wp-fcu' ),
 				'slug'     => 'codes',
 				'icon'     => 'dashicons dashicons-editor-code',
@@ -163,6 +309,13 @@ class Settings {
 		return $section_nav;
 	}
 
+	/**
+	 * Render the setting.
+	 *
+	 * @param array $setting Setting array.
+	 *
+	 * @return mixed
+	 */
 	public function render_setting( $setting ) {
 
 		if ( empty( $setting ) ) {
@@ -185,19 +338,25 @@ class Settings {
 			case 'text':
 				$max         = isset( $settings['max'] ) ? sprintf( 'max="%s"', $settings['max'] ) : '';
 				$min         = isset( $settings['min'] ) ? sprintf( 'min="%s"', $settings['min'] ) : '';
-				$placeholder = isset( $settings['placeholder'] ) ? sprintf( 'placeholder="%s"', $settings['placeholder'] ) : '';
+				$placeholder = isset( $settings['placeholder'] ) ? sprintf( 'placeholder=%s', $settings['placeholder'] ) : '';
 				?>
-				<input type="<?php echo esc_attr( $settings['type'] ); ?>" <?php echo esc_attr( $max ); ?> <?php echo esc_attr( $min ); ?> <?php echo esc_attr( $placeholder ); ?> name="<?php echo esc_attr( $settings['name'] ); ?>" value="<?php echo ''; ?>"/>
+				<div class="wp-fcu-input-wrapper">
+					<label for="<?php echo esc_attr( $settings['name'] ); ?>">
+						<input type="<?php echo esc_attr( $settings['type'] ); ?>" <?php echo esc_attr( $max ); ?> <?php echo esc_attr( $min ); ?> <?php echo esc_attr( $placeholder ); ?> name="<?php echo esc_attr( $settings['name'] ); ?>" value="<?php echo ''; ?>"/>
+					</label>
+				</div>
 				<?php
 				break;
 			case 'textarea':
 				?>
-				<textarea name="<?php echo esc_attr( $settings['name'] ); ?>" rows="5" cols="50"></textarea>
+				<div class="wp-fcu-input-wrapper">
+					<textarea name="<?php echo esc_attr( $settings['name'] ); ?>" rows="5" cols="50"></textarea>
+				</div>
 				<?php
 				break;
 			case 'checkbox':
 				?>
-					<div class="can-toggle can-toggle--size-small">
+					<div class="can-toggle wp-fcu-input-wrapper">
 						<input id="<?php echo esc_attr( $settings['name'] ); ?>" type="checkbox" name="<?php echo esc_attr( $settings['name'] ); ?>" value="1" >
 						<label for="<?php echo esc_attr( $settings['name'] ); ?>">
 							<div class="can-toggle__switch" data-checked="On" data-unchecked="Off"></div>
