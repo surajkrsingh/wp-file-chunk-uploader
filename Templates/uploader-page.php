@@ -25,6 +25,4 @@
 
 	<h3>Uploaded Files:</h3>
 	<ul id="uploaded-files-list"></ul>
-
-
 </div>

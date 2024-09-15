@@ -27,7 +27,17 @@ class Chunk_Uploader {
 	 * Construct method.
 	 */
 	protected function __construct() {
+		$this->setup_variables();
 		$this->setup_hooks();
+	}
+
+	/**
+	 * Setup variables.
+	 *
+	 * @return void
+	 */
+	protected function setup_variables() {
+		// do something
 	}
 
 	/**
@@ -59,7 +69,7 @@ class Chunk_Uploader {
 	public function chunk_upload() {
 		// Verify nonce for security
 		// if ( ! isset( $_POST['upload_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['upload_nonce'] ) ), 'chunk_upload_nonce' ) ) {
-		// 	wp_send_json_error( __( 'Invalid nonce verification.', 'textdomain' ) );
+		// wp_send_json_error( __( 'Invalid nonce verification.', 'textdomain' ) );
 		// }
 
 		// Check if the required fields are present

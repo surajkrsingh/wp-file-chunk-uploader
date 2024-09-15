@@ -16,6 +16,7 @@ use WP_FCU\Traits\Singleton;
 use WP_FCU\Classes\Admin;
 use WP_FCU\Classes\Settings;
 use WP_FCU\Classes\Chunk_Uploader;
+use WP_FCU\Classes\Media_Library_Uploader;
 
 /**
  * Class Background_Process
@@ -32,6 +33,8 @@ class Main {
 		Admin::get_instance();
 		Settings::get_instance();
 		Chunk_Uploader::get_instance();
+		Media_Library_Uploader::get_instance();
+
 		$this->setup_hooks();
 	}
 
