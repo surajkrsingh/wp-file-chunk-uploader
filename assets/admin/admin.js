@@ -1,9 +1,14 @@
-// import "bootstrap/scss/bootstrap";
+import 'bootstrap/scss/bootstrap.scss';
 import './scss/dashboard.scss';
 import './scss/settings.scss';
 import './scss/common.scss';
 
 import './js/Chart.min.js';
+
+var sizeLabel = function (tooltipItem, data) {
+    var label = ' ' + data.labels[tooltipItem.index] || '';
+    return label;
+};
 
 window.onload = function () {
 
@@ -20,11 +25,12 @@ window.onload = function () {
                 legend: false,
                 tooltips: {
                     callbacks: {
-                        label: 'Test'//sizelabel
+                        label: sizeLabel
                     },
                     backgroundColor: '#F1F1F1',
                     bodyFontColor: '#2A2A2A',
                 },
+                hoverOffset: 4,
                 title: {
                     display: true,
                     position: 'bottom',

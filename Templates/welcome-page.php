@@ -25,38 +25,26 @@ $display_name = $current_user->display_name;
 			</div>
 		</div>
 		<div class="wp-fcu-welcome-section-media">
-			Add pie chart for media and their size calculations.
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/1yWd_mZ7eF4?si=T_5SoF5h2nGm5QNR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 		</div>
 	</div>
 
-	<!-- <div class="wp-fcu-file-info-container">
-		<h2>File Information</h2>
-		<div class="wp-fcu-file-info-content">
-			<div class="wp-fcu-file-info-item">
-			</div>
-			<div class="wp-fcu-file-info-chart">
-				<canvas id="bfu-local-pie"></canvas>
-			</div>
-		</div>
-	</div> -->
-
 	<?php
-		if ( ! class_exists( 'Infinite_Uploads' ) ) {
-			$scan_results = get_site_option( 'tuxbfu_file_scan' );
-			if ( isset( $scan_results['scan_finished'] ) && $scan_results['scan_finished'] ) {
-				if ( isset( $scan_results['types'] ) ) {
-					$total_files   = array_sum( wp_list_pluck( $scan_results['types'], 'files' ) );
-					$total_storage = array_sum( wp_list_pluck( $scan_results['types'], 'size' ) );
-				} else {
-					$total_files   = 0;
-					$total_storage = 0;
-				}
-				require_once WP_FCU_PLUGIN_PATH . '/templates/scan-results.php';
+	if ( ! class_exists( 'Infinite_Uploads' ) ) {
+		$scan_results = get_site_option( 'tuxbfu_file_scan' );
+		if ( isset( $scan_results['scan_finished'] ) && $scan_results['scan_finished'] ) {
+			if ( isset( $scan_results['types'] ) ) {
+				$total_files   = array_sum( wp_list_pluck( $scan_results['types'], 'files' ) );
+				$total_storage = array_sum( wp_list_pluck( $scan_results['types'], 'size' ) );
 			} else {
-				require_once WP_FCU_PLUGIN_PATH . '/templates/scan-start.php';
+				$total_files   = 0;
+				$total_storage = 0;
 			}
+			require_once WP_FCU_PLUGIN_PATH . '/templates/scan-results.php';
+		} else {
+			require_once WP_FCU_PLUGIN_PATH . '/templates/scan-start.php';
 		}
+	}
 	?>
 
 	<div class="wp-fcu-content">

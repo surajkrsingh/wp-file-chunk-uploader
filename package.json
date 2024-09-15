@@ -30,5 +30,8 @@
 	"devDependencies": {
 		"@wordpress/browserslist-config": "^6.7.0",
 		"10up-toolkit": "^5.2.2"
+	},
+	"dependencies": {
+		"bootstrap": "^5.3.3"
 	}
 }
