@@ -24,6 +24,13 @@ class Admin {
 	use Singleton;
 
 	/**
+	 * Current screen
+	 *
+	 * @var string
+	 */
+	private $current_screen = 'settings_page_wp-file-chunk-uploader';
+
+	/**
 	 * Construct method.
 	 */
 	protected function __construct() {
@@ -52,14 +59,13 @@ class Admin {
 			return;
 		}
 
-		add_menu_page(
+		add_submenu_page(
+			'options-general.php',
 			esc_html__( 'File Chunk Uploader', 'background-process' ),
 			esc_html__( 'File Chunk Uploader', 'background-process' ),
 			'manage_options',
 			'wp-file-chunk-uploader',
-			array( $this, 'add_page_content' ),
-			'dashicons-upload',
-			2
+			array( $this, 'add_page_content' )
 		);
 	}
 
@@ -86,7 +92,7 @@ class Admin {
 	 */
 	public function add_admin_body_class( $classes ) {
 
-		if ( 'toplevel_page_wp-file-chunk-uploader' !== get_current_screen()->id ) {
+		if ( get_current_screen()->id !== $this->current_screen ) {
 			return $classes;
 		}
 
@@ -115,7 +121,7 @@ class Admin {
 	 * @return void
 	 */
 	public function add_settings_header() {
-		if ( 'toplevel_page_wp-file-chunk-uploader' !== get_current_screen()->id ) {
+		if ( get_current_screen()->id !== $this->current_screen ) {
 			return;
 		}
 
@@ -130,6 +136,10 @@ class Admin {
 	 * @return void
 	 */
 	public function load_scripts( $hook_suffix ) {
+
+		if ( get_current_screen()->id !== $this->current_screen ) {
+			return;
+		}
 
 		wp_enqueue_style(
 			'wp_fcu_admin_styles',

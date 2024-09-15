@@ -56,6 +56,10 @@ class Chunk_Uploader {
 	 * @return void
 	 */
 	public function add_chunk_uploader() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		require_once WP_FCU_PLUGIN_PATH . '/templates/uploader-page.php';
 	}
 
