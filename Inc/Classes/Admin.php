@@ -150,7 +150,7 @@ class Admin {
 
 		wp_register_script(
 			'wp_fcu_admin_scripts',
-			WP_FCU_PLUGIN_URL . '/assets/admin/main.js',
+			WP_FCU_PLUGIN_URL . '/dist/js/admin.js',
 			array( 'jquery' ),
 			WP_FCU_PLUGIN_VERSION,
 			true
@@ -160,8 +160,10 @@ class Admin {
 			'wp_fcu_admin_scripts',
 			'FCU_Objects',
 			array(
-				'ajaxURL' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( 'wp_fcu_nonce' ),
+				'ajaxURL'             => admin_url( 'admin-ajax.php' ),
+				'nonce'               => wp_create_nonce( 'wp_fcu_nonce' ),
+				'default_upload_size' => Media_Library_Uploader::get_instance()->max_upload_size,
+				'local_types'         => get_filetypes( true ),
 			)
 		);
 

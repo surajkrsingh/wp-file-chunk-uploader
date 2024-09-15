@@ -52,9 +52,9 @@ $display_name = $current_user->display_name;
 					$total_files   = 0;
 					$total_storage = 0;
 				}
-				require_once WP_FCU_PLUGIN_PATH . '/templates/scan-results.php';
+				require_once( dirname( __FILE__ ) . '/templates/scan-results.php' );
 			} else {
-				require_once WP_FCU_PLUGIN_PATH . '/templates/scan-start.php';
+				require_once( dirname( __FILE__ ) . '/templates/scan-start.php' );
 			}
 		}
 	?>

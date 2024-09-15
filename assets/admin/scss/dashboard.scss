@@ -34,6 +34,26 @@
 }
 
 .wp-fcu-admin-page  {
+
+    .wp-fcu-file-info-container {
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 0px 1px 1px #eaeaea;
+        margin-bottom: 30px;
+    }
+
+    .wp-fcu-file-info-main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+
+        .wp-fcu-file-info,
+        wp-fcu-file-info-pie {
+            flex: 1;
+        }
+    }
+
     .wp-fcu-content-main {
         padding: 30px;
         background-color: #fff;
