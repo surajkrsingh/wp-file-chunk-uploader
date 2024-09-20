@@ -3,9 +3,11 @@
 
 .wp-fcu-settings-page-container {
 
+    $border-color: #eaeaea;
+
     .wp-fcu-setting-main {
         display: flex;
-        box-shadow: 0 0px 1px 1px #eaeaea;
+        box-shadow: 0 0px 1px 1px $border-color;
         background-color: #fff;
         margin-bottom: 30px;
     }
@@ -14,7 +16,7 @@
         max-width: 320px;
         min-width: 280px;
         min-height: 400px;
-        border-right: solid 2px #ebebeb;
+        border-right: solid 2px $border-color;
     }
 
     .wp-fcu-sidebar-nav {
@@ -73,8 +75,11 @@
             align-items: center;
             justify-content: space-between;
             padding: 30px;
-            border-bottom: solid 2px #ebebeb;
             gap: 30px;
+
+            &:not(:last-child) {
+                border-bottom: solid 2px $border-color;
+            }
         }
 
         .wp-fcu-settings-header,
@@ -82,7 +87,7 @@
             padding: 15px 30px;
             display: flex;
             justify-content: end;
-            border-bottom: solid 2px #ebebeb;
+            border-bottom: solid 2px $border-color;
             position: sticky;
             background-color: #fff;
         }
@@ -95,7 +100,7 @@
 
         .wp-fcu-settings-footer {
             border: none;
-            border-top: solid 2px #ebebeb;
+            border-top: solid 2px $border-color;
             display: flex;
             align-items: center;
             justify-content: end;

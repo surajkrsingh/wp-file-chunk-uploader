@@ -25,7 +25,7 @@ if ( empty( $setting_options ) ) {
 <?php foreach ( $setting_options as $key => $option ) : ?>
 	<div class="wp-fcu-setting">
 		<div class="wp-fcu-setting-label">
-			<h2 for="wp-fcu-setting-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $option['label'] ); ?></h2>
+			<h6 class="fw-bold" for="wp-fcu-setting-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $option['label'] ); ?></h6>
 			<p class="wp-fcu-setting-description"><?php echo esc_html( $option['description'] ); ?></p>
 			<?php if ( ! empty( $option['note'] ) ) : ?>
 				<p class="wp-fcu-setting-note"><?php echo esc_html( $option['note'] ); ?></p>

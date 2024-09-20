@@ -107,7 +107,7 @@
             font-weight: 500;
             position: relative;
             color: #7a7b7d;
-            padding: 0px 16px;
+            padding: 0px 12px;
 
             &.active:after,
             &:hover::after {
@@ -124,6 +124,10 @@
             &.active:after {
                 border-color: #3858e9;
                 color: #3858e9;
+            }
+
+            &:focus {
+                box-shadow: none;
             }
 
         }

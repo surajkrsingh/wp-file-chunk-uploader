@@ -5,6 +5,7 @@ import './scss/settings.scss';
 import './scss/common.scss';
 
 import './js/Chart.min.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 var sizeLabel = function (tooltipItem, data) {
     var label = ' ' + data.labels[tooltipItem.index] || '';
@@ -14,6 +15,10 @@ var sizeLabel = function (tooltipItem, data) {
 window.onload = function () {
 
     console.log('loaded');
+
+    var myCarousel = document.querySelector('#carouselExampleDark')
+    var carousel = new bootstrap.Carousel(myCarousel)
+
 
     var pie1 = document.getElementById('bfu-local-pie');
     if (pie1) {

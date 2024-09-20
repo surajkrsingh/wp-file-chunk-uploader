@@ -43,8 +43,30 @@ foreach ( $settings as $section ) {
 			</div>
 		</div>
 		<div class="wp-fcu-welcome-section-media col-lg-6 col-xs-12 m-10">
-			<div class="ratio ratio-16x9">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/1yWd_mZ7eF4?si=T_5SoF5h2nGm5QNR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<div class="ratio ratio-16x9 overflow-hidden">
+			<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/1yWd_mZ7eF4?si=T_5SoF5h2nGm5QNR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+				<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					</div>
+					<div class="carousel-inner">
+						<div class="carousel-item active" data-bs-interval="10000">
+							<img src="https://dummyimage.com/500x300/ffff00/000" class="d-block w-100 ratio ratio-16x9" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5>First slide label</h5>
+								<p>Some representative placeholder content for the first slide.</p>
+							</div>
+						</div>
+						<div class="carousel-item" data-bs-interval="2000">
+							<img src="https://dummyimage.com/700x500/ff6600/fff" class="d-block w-100 ratio ratio-16x9" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5>Second slide label</h5>
+								<p>Some representative placeholder content for the second slide.</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
