@@ -48,6 +48,8 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'in_admin_header', array( $this, 'add_settings_header' ), 99 );
 		add_action( 'wpfcu_admin_content_welcome', array( $this, 'add_welcome_page_content' ) );
+		add_action( 'wpfcu_admin_content_tools', array( $this, 'add_tools_page_content' ) );
+		add_action( 'wpfcu_admin_content_integrations', array( $this, 'add_integrations_page_content' ) );
 	}
 
 	/**
@@ -126,6 +128,34 @@ class Admin {
 		}
 
 		require_once WP_FCU_PLUGIN_PATH . '/Templates/admin-header.php';
+	}
+
+	/**
+	 * Add integrations page content.
+	 *
+	 * @return void
+	 */
+	public function add_integrations_page_content() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		require_once WP_FCU_PLUGIN_PATH . '/Templates/integrations-page.php';
+	}
+
+	/**
+	 * Add tools page content.
+	 *
+	 * @return void
+	 */
+	public function add_tools_page_content() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		require_once WP_FCU_PLUGIN_PATH . '/Templates/tools-page.php';
 	}
 
 	/**

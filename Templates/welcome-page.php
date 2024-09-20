@@ -71,24 +71,6 @@ foreach ( $settings as $section ) {
 		</div>
 	</div>
 
-	<?php
-	if ( ! class_exists( 'Infinite_Uploads' ) ) {
-		$scan_results = get_site_option( 'tuxbfu_file_scan' );
-		if ( isset( $scan_results['scan_finished'] ) && $scan_results['scan_finished'] ) {
-			if ( isset( $scan_results['types'] ) ) {
-				$total_files   = array_sum( wp_list_pluck( $scan_results['types'], 'files' ) );
-				$total_storage = array_sum( wp_list_pluck( $scan_results['types'], 'size' ) );
-			} else {
-				$total_files   = 0;
-				$total_storage = 0;
-			}
-			require_once WP_FCU_PLUGIN_PATH . '/templates/scan-results.php';
-		} else {
-			require_once WP_FCU_PLUGIN_PATH . '/templates/scan-start.php';
-		}
-	}
-	?>
-
 	<div class="wp-fcu-content row">
 		<div class="wp-fcu-content-main col col-lg-8 col-xs-12">
 			<div class="row-header">
