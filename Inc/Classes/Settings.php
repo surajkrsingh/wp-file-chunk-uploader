@@ -87,6 +87,7 @@ class Settings {
 						'description' => esc_html__( 'File Upload Method refers to the method used to upload files.', 'wp-fcu' ),
 						'default'     => 'auto',
 						'type'        => 'select',
+						'name'        => 'file_upload_method',
 						'options'     => array(
 							'auto'   => esc_html__( 'Normal', 'wp-fcu' ),
 							'native' => esc_html__( 'Chunked Upload', 'wp-fcu' ),
@@ -183,6 +184,7 @@ class Settings {
 						'default'     => true,
 						'note'        => esc_html__( 'Note: When uploading images via external pages or shortcodes, files will automatically be created as WordPress media attachments.', 'wp-fcu' ),
 						'quick_edit'  => true,
+						'icon'        => 'dashicons dashicons-admin-links',
 					),
 					'enable_logging'         => array(
 						'label'       => esc_html__( 'Enable Logging', 'wp-fcu' ),
