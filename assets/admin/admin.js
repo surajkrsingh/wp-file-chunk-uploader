@@ -14,12 +14,6 @@ var sizeLabel = function (tooltipItem, data) {
 
 window.onload = function () {
 
-    console.log('loaded');
-
-    var myCarousel = document.querySelector('#carouselExampleDark')
-    var carousel = new bootstrap.Carousel(myCarousel)
-
-
     var pie1 = document.getElementById('bfu-local-pie');
     if (pie1) {
 
