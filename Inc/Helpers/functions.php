@@ -184,7 +184,7 @@ function get_file_type_format( $type, $key ) {
 			'label' => esc_html__( 'Code', 'tuxedo-big-file-uploads' ),
 		),
 		'other'    => array(
-			'color' => '#F1F1F1',
+			'color' => '#198754',
 			'label' => esc_html__( 'Other', 'tuxedo-big-file-uploads' ),
 		),
 	);

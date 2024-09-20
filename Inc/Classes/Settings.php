@@ -87,10 +87,12 @@ class Settings {
 						'description' => esc_html__( 'File Upload Method refers to the method used to upload files.', 'wp-fcu' ),
 						'default'     => 'auto',
 						'type'        => 'select',
-						'choices'     => array(
+						'options'     => array(
 							'auto'   => esc_html__( 'Normal', 'wp-fcu' ),
 							'native' => esc_html__( 'Chunked Upload', 'wp-fcu' ),
 						),
+						'quick_edit'  => true,
+						'icon'        => 'dashicons dashicons-upload',
 					),
 					'allow_file_types'   => array(
 						'label'       => esc_html__( 'Allowed File Types', 'wp-fcu' ),
@@ -100,6 +102,7 @@ class Settings {
 						'name'        => 'allow_file_types',
 						'placeholder' => 'zip,jpg,jpeg,png,doc,docx,pdf',
 						'note'        => esc_html__( 'Enter the file types separated by commas.', 'wp-fcu' ),
+						'icon'        => 'dashicons dashicons-format-gallery',
 					),
 					'chunk_size'         => array(
 						'label'       => esc_html__( 'Upload Chunk Size', 'wp-fcu' ),
@@ -111,9 +114,11 @@ class Settings {
 						'min'         => 1,
 						'placeholder' => '10',
 						'name'        => 'chunk_size',
+						'quick_edit'  => true,
+						'icon'        => 'dashicons dashicons-hammer',
 					),
 					'max_file_size'      => array(
-						'label'       => esc_html__( 'Max File Size', 'wp-fcu' ),
+						'label'       => esc_html__( 'Maximum File Size', 'wp-fcu' ),
 						'description' => esc_html__( 'Max File Size is the maximum size in MB of the uploaded file.', 'wp-fcu' ),
 						'default'     => '10MB',
 						'type'        => 'text',
@@ -121,9 +126,11 @@ class Settings {
 						'min'         => 0,
 						'placeholder' => intval( preg_replace( '/[^0-9]/', '', $upload_max_filesize ) ),
 						'name'        => 'max_file_size',
+						'quick_edit'  => true,
+						'icon'        => 'dashicons dashicons-hammer',
 					),
 					'max_upload_size'    => array(
-						'label'       => esc_html__( 'Max Upload Size', 'wp-fcu' ),
+						'label'       => esc_html__( 'Maximum Upload Size', 'wp-fcu' ),
 						'description' => esc_html__( 'Max Upload Size is the maximum size in MB of the uploaded file.', 'wp-fcu' ),
 						'default'     => 0,
 						'type'        => 'number',
@@ -131,6 +138,8 @@ class Settings {
 						'min'         => 0,
 						'placeholder' => intval( preg_replace( '/[^0-9]/', '', $upload_max_filesize ) ),
 						'name'        => 'max_upload_size',
+						'quick_edit'  => true,
+						'icon'        => 'dashicons dashicons-hammer',
 					),
 					'upload_dir'         => array(
 						'label'       => esc_html__( 'Upload Directory', 'wp-fcu' ),
@@ -139,6 +148,7 @@ class Settings {
 						'type'        => 'text',
 						'placeholder' => 'wp-content/uploads/',
 						'name'        => 'upload_dir',
+						'icon'        => 'dashicons dashicons-upload',
 					),
 				),
 			),
@@ -154,6 +164,8 @@ class Settings {
 						'type'        => 'checkbox',
 						'name'        => 'upload_in_media_library',
 						'default'     => true,
+						'quick_edit'  => true,
+						'icon'        => 'dashicons dashicons-admin-media',
 					),
 				),
 			),
@@ -170,6 +182,7 @@ class Settings {
 						'name'        => 'is_create_attachments',
 						'default'     => true,
 						'note'        => esc_html__( 'Note: When uploading images via external pages or shortcodes, files will automatically be created as WordPress media attachments.', 'wp-fcu' ),
+						'quick_edit'  => true,
 					),
 					'enable_logging'         => array(
 						'label'       => esc_html__( 'Enable Logging', 'wp-fcu' ),
@@ -362,6 +375,21 @@ class Settings {
 							<div class="can-toggle__switch" data-checked="On" data-unchecked="Off"></div>
 						</label>
 					</div>
+				<?php
+				break;
+			case 'select':
+				?>
+				<div class="wp-fcu-input-wrapper">
+					<select name="<?php echo esc_attr( $settings['name'] ); ?>">
+						<?php
+						foreach ( $settings['options'] as $key => $option ) {
+							?>
+							<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $option ); ?></option>
+							<?php
+						}
+						?>
+					</select>
+				</div>
 				<?php
 				break;
 		}

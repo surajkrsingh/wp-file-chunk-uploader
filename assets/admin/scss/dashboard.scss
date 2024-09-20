@@ -7,48 +7,73 @@
     .wp-fcu-quick-settings-item {
         min-width: 360px;
         max-width: 360px;
-        background: wheat;
-        display: flex;
-        align-items: center;
+        background: #f3f4f5;
+        overflow: hidden;
+        min-height: 60px;
     }
 
     .wp-fcu-quick-settings-icon {
-        width: 20%;
-        height: 100%;
-        display: flex;
+
+        $icon-size: 40px;
+
         align-items: center;
+        background: #000;
+        color: #fff;
+        display: flex;
+        height: 100%;
         justify-content: center;
-        background: black;
-        color: white;
+        width: 80px;
+        min-width: 80px;
+
+        .dashicons {
+            font-size: $icon-size;
+            width: $icon-size;
+            height: $icon-size;
+        }
     }
 
     .wp-fcu-quick-settings-description {
         padding: 0 20px;
-        width: 80%;
     }
 
-    .wp-fcu-quick-settings-action {
-        width: 20%;
-    }
 
+    .wp-fcu-input-wrapper select,
+    .wp-fcu-input-wrapper input[type="number"],
+    .wp-fcu-input-wrapper input[type="range"],
+    .wp-fcu-input-wrapper input[type="text"],
+    .wp-fcu-input-wrapper input[type="email"]{
+        max-width: 90px;
+        min-width: 35px;
+        height: 35px;
+        font-size: 16px;
+        text-align: center;
+        padding: 0;
+        background: white;
+    }
 }
 
 .wp-fcu-admin-page  {
 
+
     .wp-fcu-file-info-container {
         margin-bottom: 30px;
-        max-width: 100%;
-        padding: 0;
+        padding: 30px;
+        background-color: #fff;
+        background-image: url("../images/wave.svg");
+        box-shadow: 0 0px 1px 1px #eaeaea;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: cover;
     }
 
     .wp-fcu-content-main {
         padding: 30px;
         background-color: #fff;
         box-shadow: 0 0px 1px 1px #eaeaea;
-        width: 70%;
+        // width: 70%;
     }
 
     .wp-fcu-content-aside {
-        width: 30%;
+        // width: 30%;
     }
 }
